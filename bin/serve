@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+# shellcheck disable=SC1071
+
+from typing import Optional
+
+import typer
+import subprocess
+
+# Application metadata.
+info = dict(
+    name="bin/serve",
+    version="0.0.1",
+    copyright="Copyright (C) 2023 - Ian Effendi"
+)
+
+# Create the application.
+app = typer.Typer(help="Interface for the development server.")
+
+@app.command()
+def version():
+    typer.echo(f"{info["name"]} v{info["version"]}")
+    typer.echo(f"{info["copyright"]}")
+    
+@app.command()
+def dev():
+    typer.echo("Running the development server.")
+    subprocess.run([
+        "uvicorn",
+        "app.main:app",
+        "--reload"
+    ])
+
+# Run the application if run from the command line.
+if __name__ == "__main__":
+    app()
