@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+# Get the working directory.
+CURRENT_DIRECTORY="$(pwd)"
+SCRIPT_DIRECTORY="${CURRENT_DIRECTORY}/bin"
+
+# Error if user is not in the primary working directory.
+if [ ! -d "${SCRIPT_DIRECTORY}" ]; then
+    echo "Please run this script from the project's root directory."
+    exit 2
+fi
+
+# Error if `pip-compile` dependency has not been installed.
+if pip list | grep pip-tools >/dev/null; then
+    echo "Compiling package dependencies."
+else
+    echo "Missing the \`pip-compile\` command." >&2
+    echo "Please install \`pip-tools\` using \`pip install pip-tools\`." >&2
+    exit 2
+fi
+
+# Define output filename.
+INPUT_FILE="${CURRENT_DIRECTORY}/bin/requirements.in"
+OUTPUT_FILE="${CURRENT_DIRECTORY}/requirements.txt"
+
+# Create the build requirements input file.
+pip-compile --generate-hashes --output-file="${OUTPUT_FILE}" "${INPUT_FILE}" --pip-args "$@"
