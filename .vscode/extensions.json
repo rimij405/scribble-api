@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "antfu.browse-lite",
+        "ms-vscode-remote.remote-containers",
+        "mikestead.dotenv",
+        "usernamehw.errorlens",
+        "kevinrose.vsc-python-indent",
+        "ms-python.python",
+        "njpwerner.autodocstring",
+        "almenon.arepl",
+        "littlefoxteam.vscode-python-test-adapter",
+        "njqdev.vscode-python-typehint",
+        "redhat.vscode-yaml"
+    ]
+}
